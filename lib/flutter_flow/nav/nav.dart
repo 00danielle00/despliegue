@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/backend/supabase/supabase.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -34,17 +35,82 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => HomePageWidget(),
+      errorBuilder: (context, state) => PantallaPrincipalWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => HomePageWidget(),
+          builder: (context, _) => PantallaPrincipalWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          name: PantallaPrincipalWidget.routeName,
+          path: PantallaPrincipalWidget.routePath,
+          builder: (context, params) => PantallaPrincipalWidget(),
+        ),
+        FFRoute(
+          name: PantallaAlumnnoWidget.routeName,
+          path: PantallaAlumnnoWidget.routePath,
+          builder: (context, params) => PantallaAlumnnoWidget(),
+        ),
+        FFRoute(
+          name: PantallaAsignaturaWidget.routeName,
+          path: PantallaAsignaturaWidget.routePath,
+          builder: (context, params) => PantallaAsignaturaWidget(),
+        ),
+        FFRoute(
+          name: ListaralumnosWidget.routeName,
+          path: ListaralumnosWidget.routePath,
+          builder: (context, params) => ListaralumnosWidget(),
+        ),
+        FFRoute(
+          name: AnyadirAlumnoWidget.routeName,
+          path: AnyadirAlumnoWidget.routePath,
+          builder: (context, params) => AnyadirAlumnoWidget(),
+        ),
+        FFRoute(
+          name: EditarAlumnoWidget.routeName,
+          path: EditarAlumnoWidget.routePath,
+          builder: (context, params) => EditarAlumnoWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: PantallaEditarAlumnoWidget.routeName,
+          path: PantallaEditarAlumnoWidget.routePath,
+          builder: (context, params) => PantallaEditarAlumnoWidget(),
+        ),
+        FFRoute(
+          name: EliminarAlumnoWidget.routeName,
+          path: EliminarAlumnoWidget.routePath,
+          builder: (context, params) => EliminarAlumnoWidget(),
+        ),
+        FFRoute(
+          name: ListarAsignaturasWidget.routeName,
+          path: ListarAsignaturasWidget.routePath,
+          builder: (context, params) => ListarAsignaturasWidget(),
+        ),
+        FFRoute(
+          name: AnyadirAsignaturaWidget.routeName,
+          path: AnyadirAsignaturaWidget.routePath,
+          builder: (context, params) => AnyadirAsignaturaWidget(),
+        ),
+        FFRoute(
+          name: EditarAsignaturaWidget.routeName,
+          path: EditarAsignaturaWidget.routePath,
+          builder: (context, params) => EditarAsignaturaWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListarAsignaturasAlumnoWidget.routeName,
+          path: ListarAsignaturasAlumnoWidget.routePath,
+          builder: (context, params) => ListarAsignaturasAlumnoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

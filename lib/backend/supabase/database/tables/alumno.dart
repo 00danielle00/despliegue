@@ -17,9 +17,9 @@ class AlumnoRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  String? get nombre => getField<String>('nombre');
-  set nombre(String? value) => setField<String>('nombre', value);
+  String get nombre => getField<String>('nombre')!;
+  set nombre(String value) => setField<String>('nombre', value);
 
-  String? get apellido => getField<String>('apellido');
-  set apellido(String? value) => setField<String>('apellido', value);
+  String get apellido => getField<String>('apellido')!;
+  set apellido(String value) => setField<String>('apellido', value);
 }

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'home_page_widget.dart' show HomePageWidget;
+import 'goback_widget.dart' show GobackWidget;
 import 'package:flutter/material.dart';
 
-class HomePageModel extends FlutterFlowModel<HomePageWidget> {
+class GobackModel extends FlutterFlowModel<GobackWidget> {
   @override
   void initState(BuildContext context) {}
 
