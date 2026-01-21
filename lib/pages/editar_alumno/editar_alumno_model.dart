@@ -10,9 +10,13 @@ class EditarAlumnoModel extends FlutterFlowModel<EditarAlumnoWidget> {
   // Model for goback component.
   late GobackModel gobackModel;
   // State field(s) for nombre widget.
-  FocusNode? nombreFocusNode;
-  TextEditingController? nombreTextController;
-  String? Function(BuildContext, String?)? nombreTextControllerValidator;
+  FocusNode? nombreFocusNode1;
+  TextEditingController? nombreTextController1;
+  String? Function(BuildContext, String?)? nombreTextController1Validator;
+  // State field(s) for nombre widget.
+  FocusNode? nombreFocusNode2;
+  TextEditingController? nombreTextController2;
+  String? Function(BuildContext, String?)? nombreTextController2Validator;
 
   @override
   void initState(BuildContext context) {
@@ -22,7 +26,10 @@ class EditarAlumnoModel extends FlutterFlowModel<EditarAlumnoWidget> {
   @override
   void dispose() {
     gobackModel.dispose();
-    nombreFocusNode?.dispose();
-    nombreTextController?.dispose();
+    nombreFocusNode1?.dispose();
+    nombreTextController1?.dispose();
+
+    nombreFocusNode2?.dispose();
+    nombreTextController2?.dispose();
   }
 }

@@ -9,14 +9,11 @@ import 'package:flutter/material.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-Future editAlumno(
-  String nombre,
-  int id,
-) async {
+Future editAlumno(String nombre, int id, String apellido) async {
   final supabase = Supabase.instance.client;
   await supabase
       .from('alumno')
-      .update({'nombre': nombre})
+      .update({'nombre': nombre, 'apellido': apellido})
       .eq('id', id)
       .select();
 }
