@@ -1,6 +1,5 @@
 import '/backend/supabase/supabase.dart';
 import '/componentes/goback/goback_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -252,33 +251,6 @@ class _ListarAsignaturas2WidgetState extends State<ListarAsignaturas2Widget> {
                                                       TextOverflow.ellipsis,
                                                 ),
                                               ),
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 8.0,
-                                              buttonSize: 40.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              icon: Icon(
-                                                Icons.delete_sweep_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                size: 24.0,
-                                              ),
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                  ListarAlumnAsigWidget
-                                                      .routeName,
-                                                  queryParameters: {
-                                                    'asignatura':
-                                                        serializeParam(
-                                                      listViewAsignaturaRow,
-                                                      ParamType.SupabaseRow,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              },
                                             ),
                                           ],
                                         ),

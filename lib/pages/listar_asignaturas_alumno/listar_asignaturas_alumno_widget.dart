@@ -1,6 +1,5 @@
 import '/backend/supabase/supabase.dart';
 import '/componentes/goback/goback_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -261,27 +260,6 @@ class _ListarAsignaturasAlumnoWidgetState
                                                       ),
                                                 ),
                                               ),
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 8.0,
-                                              buttonSize: 40.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              icon: Icon(
-                                                Icons.delete_sweep,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .info,
-                                                size: 24.0,
-                                              ),
-                                              onPressed: () async {
-                                                await actions
-                                                    .desmatricularAlumno(
-                                                  listaIndex,
-                                                  widget.alumno!.id,
-                                                );
-                                              },
                                             ),
                                           ],
                                         ),

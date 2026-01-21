@@ -1,6 +1,5 @@
 import '/backend/supabase/supabase.dart';
 import '/componentes/goback/goback_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -248,23 +247,6 @@ class _ListarAlumnAsigWidgetState extends State<ListarAlumnAsigWidget> {
                                                         ),
                                               ),
                                             ),
-                                          ),
-                                          FlutterFlowIconButton(
-                                            borderRadius: 8.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            icon: Icon(
-                                              Icons.arrow_back,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .info,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () {
-                                              print('IconButton pressed ...');
-                                            },
                                           ),
                                         ],
                                       ),
