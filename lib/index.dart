@@ -22,3 +22,13 @@ export '/pages/editar_asignatura/editar_asignatura_widget.dart'
     show EditarAsignaturaWidget;
 export '/pages/listar_asignaturas_alumno/listar_asignaturas_alumno_widget.dart'
     show ListarAsignaturasAlumnoWidget;
+export '/pages/listar_alumn_asig/listar_alumn_asig_widget.dart'
+    show ListarAlumnAsigWidget;
+export '/pages/matricular_alumno_asign/matricular_alumno_asign_widget.dart'
+    show MatricularAlumnoAsignWidget;
+export '/pages/listaralumnos2/listaralumnos2_widget.dart'
+    show Listaralumnos2Widget;
+export '/pages/listar_asignaturas2/listar_asignaturas2_widget.dart'
+    show ListarAsignaturas2Widget;
+export '/pages/desmatricular_alumno_asign/desmatricular_alumno_asign_widget.dart'
+    show DesmatricularAlumnoAsignWidget;

@@ -4,3 +4,7 @@ export 'delete_alumno.dart' show deleteAlumno;
 export 'anyadir_asignatura.dart' show anyadirAsignatura;
 export 'edit_asignaatura.dart' show editAsignaatura;
 export 'delete_asignatura.dart' show deleteAsignatura;
+export 'new_custom_action.dart' show newCustomAction;
+export 'listar_asignaturas_alumno.dart' show listarAsignaturasAlumno;
+export 'matricular_alumno.dart' show matricularAlumno;
+export 'desmatricular_alumno.dart' show desmatricularAlumno;

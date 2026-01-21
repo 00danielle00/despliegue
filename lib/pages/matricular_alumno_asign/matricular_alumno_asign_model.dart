@@ -1,10 +1,11 @@
 import '/componentes/goback/goback_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'listaralumnos_widget.dart' show ListaralumnosWidget;
+import 'matricular_alumno_asign_widget.dart' show MatricularAlumnoAsignWidget;
 import 'package:flutter/material.dart';
 
-class ListaralumnosModel extends FlutterFlowModel<ListaralumnosWidget> {
+class MatricularAlumnoAsignModel
+    extends FlutterFlowModel<MatricularAlumnoAsignWidget> {
   ///  State fields for stateful widgets in this page.
 
   // Model for goback component.

@@ -3,48 +3,31 @@ import '/componentes/goback/goback_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'listar_asignaturas_alumno_model.dart';
-export 'listar_asignaturas_alumno_model.dart';
+import 'listaralumnos2_model.dart';
+export 'listaralumnos2_model.dart';
 
-class ListarAsignaturasAlumnoWidget extends StatefulWidget {
-  const ListarAsignaturasAlumnoWidget({
-    super.key,
-    this.alumno,
-  });
+class Listaralumnos2Widget extends StatefulWidget {
+  const Listaralumnos2Widget({super.key});
 
-  final AlumnoRow? alumno;
-
-  static String routeName = 'listarAsignaturasAlumno';
-  static String routePath = '/listarAsignaturasAlumno';
+  static String routeName = 'listaralumnos2';
+  static String routePath = '/listaralumnos2';
 
   @override
-  State<ListarAsignaturasAlumnoWidget> createState() =>
-      _ListarAsignaturasAlumnoWidgetState();
+  State<Listaralumnos2Widget> createState() => _Listaralumnos2WidgetState();
 }
 
-class _ListarAsignaturasAlumnoWidgetState
-    extends State<ListarAsignaturasAlumnoWidget> {
-  late ListarAsignaturasAlumnoModel _model;
+class _Listaralumnos2WidgetState extends State<Listaralumnos2Widget> {
+  late Listaralumnos2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ListarAsignaturasAlumnoModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.ki = await actions.newCustomAction(
-        widget.alumno!.id,
-      );
-      _model.listaPagiina = _model.ki!.toList().cast<dynamic>();
-      safeSetState(() {});
-    });
+    _model = createModel(context, () => Listaralumnos2Model());
   }
 
   @override
@@ -86,9 +69,9 @@ class _ListarAsignaturasAlumnoWidgetState
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 6.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 0.0, 0.0),
                       child: Text(
-                        'Lista de asignaturas de',
+                        'Lista de alumnos',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               font: GoogleFonts.cutiveMono(
                                 fontWeight: FontWeight.w600,
@@ -96,7 +79,7 @@ class _ListarAsignaturasAlumnoWidgetState
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                              fontSize: 17.0,
+                              fontSize: 20.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               fontStyle: FlutterFlowTheme.of(context)
@@ -104,26 +87,6 @@ class _ListarAsignaturasAlumnoWidgetState
                                   .fontStyle,
                             ),
                       ),
-                    ),
-                    Text(
-                      valueOrDefault<String>(
-                        widget.alumno?.nombre,
-                        'alumnno',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.cutiveMono(
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
                     ),
                   ],
                 ),
@@ -138,7 +101,7 @@ class _ListarAsignaturasAlumnoWidgetState
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Asignatura',
+                              'Nombre',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -156,6 +119,33 @@ class _ListarAsignaturasAlumnoWidgetState
                                         .fontStyle,
                                   ),
                             ),
+                            Align(
+                              alignment: AlignmentDirectional(1.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    50.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Apellidos',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        fontSize: 17.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -170,17 +160,36 @@ class _ListarAsignaturasAlumnoWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
-                          child: Builder(
-                            builder: (context) {
-                              final lista = _model.listaPagiina.toList();
+                          child: FutureBuilder<List<AlumnoRow>>(
+                            future: AlumnoTable().queryRows(
+                              queryFn: (q) => q,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<AlumnoRow> listViewAlumnoRowList =
+                                  snapshot.data!;
 
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
-                                itemCount: lista.length,
-                                itemBuilder: (context, listaIndex) {
-                                  final listaItem = lista[listaIndex];
+                                itemCount: listViewAlumnoRowList.length,
+                                itemBuilder: (context, listViewIndex) {
+                                  final listViewAlumnoRow =
+                                      listViewAlumnoRowList[listViewIndex];
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 10.0),
@@ -190,9 +199,15 @@ class _ListarAsignaturasAlumnoWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        await actions.desmatricularAlumno(
-                                          listaIndex,
-                                          widget.alumno!.id,
+                                        context.pushNamed(
+                                          ListarAsignaturasAlumnoWidget
+                                              .routeName,
+                                          queryParameters: {
+                                            'alumno': serializeParam(
+                                              listViewAlumnoRow,
+                                              ParamType.SupabaseRow,
+                                            ),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: Container(
@@ -217,7 +232,7 @@ class _ListarAsignaturasAlumnoWidgetState
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             Align(
                                               alignment: AlignmentDirectional(
@@ -225,12 +240,12 @@ class _ListarAsignaturasAlumnoWidgetState
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        10.0, 0.0, 40.0, 0.0),
+                                                        10.0, 0.0, 0.0, 0.0),
                                                 child: Text(
-                                                  getJsonField(
-                                                    listaItem,
-                                                    r'''$.id_asignatura''',
-                                                  ).toString(),
+                                                  valueOrDefault<String>(
+                                                    listViewAlumnoRow.nombre,
+                                                    's',
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -262,6 +277,77 @@ class _ListarAsignaturasAlumnoWidgetState
                                                 ),
                                               ),
                                             ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  listViewAlumnoRow.apellido,
+                                                  'd',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 0.0, 0.0),
+                                              child: FlutterFlowIconButton(
+                                                borderRadius: 8.0,
+                                                buttonSize: 40.0,
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                icon: Icon(
+                                                  Icons.add_to_photos,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                  size: 24.0,
+                                                ),
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                    MatricularAlumnoAsignWidget
+                                                        .routeName,
+                                                    queryParameters: {
+                                                      'alumno': serializeParam(
+                                                        listViewAlumnoRow,
+                                                        ParamType.SupabaseRow,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                },
+                                              ),
+                                            ),
                                             FlutterFlowIconButton(
                                               borderRadius: 8.0,
                                               buttonSize: 40.0,
@@ -276,10 +362,15 @@ class _ListarAsignaturasAlumnoWidgetState
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                await actions
-                                                    .desmatricularAlumno(
-                                                  listaIndex,
-                                                  widget.alumno!.id,
+                                                context.pushNamed(
+                                                  DesmatricularAlumnoAsignWidget
+                                                      .routeName,
+                                                  queryParameters: {
+                                                    'alumno': serializeParam(
+                                                      listViewAlumnoRow,
+                                                      ParamType.SupabaseRow,
+                                                    ),
+                                                  }.withoutNulls,
                                                 );
                                               },
                                             ),

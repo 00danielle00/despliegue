@@ -110,7 +110,52 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ListarAsignaturasAlumnoWidget.routeName,
           path: ListarAsignaturasAlumnoWidget.routePath,
-          builder: (context, params) => ListarAsignaturasAlumnoWidget(),
+          builder: (context, params) => ListarAsignaturasAlumnoWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListarAlumnAsigWidget.routeName,
+          path: ListarAlumnAsigWidget.routePath,
+          builder: (context, params) => ListarAlumnAsigWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MatricularAlumnoAsignWidget.routeName,
+          path: MatricularAlumnoAsignWidget.routePath,
+          builder: (context, params) => MatricularAlumnoAsignWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Listaralumnos2Widget.routeName,
+          path: Listaralumnos2Widget.routePath,
+          builder: (context, params) => Listaralumnos2Widget(),
+        ),
+        FFRoute(
+          name: ListarAsignaturas2Widget.routeName,
+          path: ListarAsignaturas2Widget.routePath,
+          builder: (context, params) => ListarAsignaturas2Widget(),
+        ),
+        FFRoute(
+          name: DesmatricularAlumnoAsignWidget.routeName,
+          path: DesmatricularAlumnoAsignWidget.routePath,
+          builder: (context, params) => DesmatricularAlumnoAsignWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
